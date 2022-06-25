@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Beer</string>
+    <string name="beer_list_menu_item">Beers</string>
+    <string name="settings_menu_item">Settings</string>
 </resources>
