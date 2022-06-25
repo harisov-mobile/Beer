@@ -1,10 +1,11 @@
 package ru.internetcloud.beer.domain.repository
 
 import ru.internetcloud.beer.domain.model.Beer
+import ru.internetcloud.beer.domain.model.Result
 
 interface BeerRepository {
 
-    fun getAllBeers(): Result<List<Beer>>
+    suspend fun getAllBeers(): Result<List<Beer>>
 
     fun saveBeer(beer: Beer): Boolean
 
