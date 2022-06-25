@@ -10,4 +10,9 @@
         android:name="ru.internetcloud.beer.presentation.beer_list.BeerListFragment"
         android:label="BeerListFragment"
         tools:layout="@layout/fragment_beer_list"/>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="ru.internetcloud.beer.presentation.settings.SettingsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@layout/fragment_settings" />
 </navigation>
