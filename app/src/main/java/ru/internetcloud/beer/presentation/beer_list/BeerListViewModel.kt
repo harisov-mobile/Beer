@@ -1,6 +1,5 @@
 package ru.internetcloud.beer.presentation.beer_list
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -27,7 +26,6 @@ class BeerListViewModel : ViewModel() {
     }
 
     fun fetchBeers() {
-        Log.i("rustam", "fetchBeers")
 
         val apiClient = ApiClient()
 

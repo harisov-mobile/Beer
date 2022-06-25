@@ -1,7 +1,6 @@
 package ru.internetcloud.beer.presentation.beer_list
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,14 +38,6 @@ class BeerListFragment : Fragment() {
         observeBeerViewModel()
         setupClickListeners()
         // setHasOptionsMenu(true)
-
-        savedInstanceState?.let {
-            Log.i("rustam", " savedInstanceState not null")
-        }
-            ?: let {
-                // beerListViewModel.fetchBeers()
-                Log.i("rustam", " savedInstanceState IS null")
-            }
     }
 
     private fun setupClickListeners() {
