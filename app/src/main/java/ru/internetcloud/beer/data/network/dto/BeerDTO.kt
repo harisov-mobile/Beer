@@ -20,5 +20,4 @@ data class BeerDTO(
 
     @SerializedName("food_pairing")
     val foodPairing: List<String>
-) {
-}
+)
