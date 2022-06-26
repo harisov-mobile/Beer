@@ -45,8 +45,6 @@ class EditBeerFragment : Fragment() {
             // при повороте экрана - надо заново отобразить
             updateUI(currentBeer)
         } ?: throw IllegalStateException("Beer in editBeerViewModel can not be null")
-
-        setupClickListeners()
     }
 
     private fun updateUI(beer: Beer) {
@@ -56,9 +54,5 @@ class EditBeerFragment : Fragment() {
 
     private fun readArgs() {
         editBeerViewModel.beer = args.beer
-    }
-
-    private fun setupClickListeners() {
-        // TODO("Not yet implemented")
     }
 }
