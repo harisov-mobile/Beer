@@ -10,17 +10,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.15" />
+        app:layout_constraintGuide_percent="0.1" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/beers_detail_guideline_middle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.45" />
+        app:layout_constraintGuide_percent="0.5" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/beer_image_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
 
@@ -34,23 +34,30 @@
 
     <TextView
         android:id="@+id/beer_name_text_view"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
 
         tools:text="beer_name_text_view"
 
+        android:textSize="@dimen/app_large_text"
+        android:textStyle="bold"
+
         android:layout_margin="@dimen/standart_margin"
+        android:gravity="center"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/beers_detail_guideline_middle" />
 
     <TextView
         android:id="@+id/tagline_text_view"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
 
         tools:text="tagline_text_view"
+        android:gravity="center"
 
+        android:textSize="@dimen/app_normal_text"
         android:layout_margin="@dimen/standart_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
