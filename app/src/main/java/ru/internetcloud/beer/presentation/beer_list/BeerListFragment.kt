@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import ru.internetcloud.beer.databinding.FragmentBeerListBinding
 import java.lang.IllegalStateException
 
@@ -41,6 +42,11 @@ class BeerListFragment : Fragment() {
 
     private fun setupClickListeners() {
         beerListAdapter.onBeerListClickListener = { currentBeer ->
+            val direction = BeerListFragmentDirections.actionBeerListFragmentToEditBeerFragment(
+                beer = currentBeer
+            )
+
+            findNavController().navigate(direction)
         }
     }
 
