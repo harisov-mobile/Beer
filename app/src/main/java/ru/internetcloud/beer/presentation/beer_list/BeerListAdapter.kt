@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import ru.internetcloud.beer.databinding.ItemBeerListBinding
 import ru.internetcloud.beer.domain.model.Beer
+import ru.internetcloud.beer.presentation.util.loadImage
 
 class BeerListAdapter : ListAdapter<Beer, BeerListViewHolder>(BeerDiffCallback()) {
 
@@ -26,6 +27,7 @@ class BeerListAdapter : ListAdapter<Beer, BeerListViewHolder>(BeerDiffCallback()
 
         binding.beerNameTextView.text = beer.name
         binding.taglineTextView.text = beer.tagline
+        binding.beerImageView.loadImage(beer.image)
 
         binding.root.setOnClickListener {
             onBeerListClickListener?.invoke(beer)
