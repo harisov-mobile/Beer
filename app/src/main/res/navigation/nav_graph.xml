@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/beerListFragment">
+
+    <fragment
+        android:id="@+id/beerListFragment"
+        android:name="ru.internetcloud.beer.presentation.beer_list.BeerListFragment"
+        android:label="BeerListFragment"
+        tools:layout="@layout/fragment_beer_list">
+        <action
+            android:id="@+id/action_beerListFragment_to_editBeerFragment"
+            app:destination="@id/editBeerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="ru.internetcloud.beer.presentation.settings.SettingsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/editBeerFragment"
+        android:name="ru.internetcloud.beer.presentation.edit_beer.EditBeerFragment"
+        android:label="@string/fragment_edit_note_label"
+        tools:layout="@layout/fragment_edit_beer"
+        >
+        <argument
+            android:name="beer"
+            app:argType="ru.internetcloud.beer.domain.model.Beer" />
+    </fragment>
+
+</navigation>

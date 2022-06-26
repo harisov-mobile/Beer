@@ -7,6 +7,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.internetcloud.beer.BuildConfig
 
+private const val BASE_URL = "https://api.punkapi.com/v2/"
+
 class ApiClient {
 
     private val okHttpClient: OkHttpClient =
@@ -28,7 +30,7 @@ class ApiClient {
     private fun getRetrofit(): Retrofit {
         val gson = GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create()
         val retrofit = Retrofit.Builder()
-            // .baseUrl(authParameters.server)
+            .baseUrl(BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()

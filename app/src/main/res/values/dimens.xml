@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="beer_card_elevation">10dp</dimen>
+    <dimen name="standart_margin">16dp</dimen>
+    <dimen name="beer_card_corner_radius">10dp</dimen>
+    <dimen name="app_large_text">20sp</dimen>
+    <dimen name="app_normal_text">16sp</dimen>
+</resources>
