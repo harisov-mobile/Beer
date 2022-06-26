@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ru.internetcloud.beer.databinding.FragmentBeerListBinding
@@ -42,13 +41,44 @@ class BeerListFragment : Fragment() {
 
     private fun setupClickListeners() {
         beerListAdapter.onBeerListClickListener = { currentBeer ->
-            Toast.makeText(context, "Beer ${currentBeer.name}", Toast.LENGTH_LONG).show()
         }
     }
 
     private fun observeBeerViewModel() {
         beerListViewModel.beerListLiveData.observe(viewLifecycleOwner) { list ->
             beerListAdapter.submitList(list)
+        }
+
+        beerListViewModel.isLoadingLiveData.observe(viewLifecycleOwner) { isLoading ->
+            if (isLoading) {
+                binding.progressBar.visibility = View.VISIBLE
+            } else {
+                binding.progressBar.visibility = View.GONE
+            }
+        }
+
+        beerListViewModel.isEmptyLiveData.observe(viewLifecycleOwner) { isEmpty ->
+            if (isEmpty) {
+                binding.emptyListTextView.visibility = View.VISIBLE
+            } else {
+                binding.emptyListTextView.visibility = View.GONE
+            }
+        }
+
+        beerListViewModel.isErrorLiveData.observe(viewLifecycleOwner) { isError ->
+            if (isError) {
+                binding.errorTextView.visibility = View.VISIBLE
+            } else {
+                binding.errorTextView.visibility = View.GONE
+            }
+        }
+
+        beerListViewModel.shouldShowRecyclerViewLiveData.observe(viewLifecycleOwner) { shouldShow ->
+            if (shouldShow) {
+                binding.beerRecyclerView.visibility = View.VISIBLE
+            } else {
+                binding.beerRecyclerView.visibility = View.INVISIBLE
+            }
         }
     }
 

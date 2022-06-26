@@ -2,4 +2,6 @@
     <string name="app_name">Beer</string>
     <string name="beer_list_menu_item">Beers</string>
     <string name="settings_menu_item">Settings</string>
+    <string name="error_text_view">error_text_view</string>
+    <string name="empty_list_text_view">Not found</string>
 </resources>

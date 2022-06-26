@@ -5,7 +5,7 @@ import ru.internetcloud.beer.data.network.api.ApiService
 import ru.internetcloud.beer.domain.model.Beer
 import ru.internetcloud.beer.domain.model.Result
 
-const val MAX_RESULTS_PER_PAGE: Int = 80
+const val MAX_RESULTS_PER_PAGE: Int = 4
 
 class BeerNetworkDataSource(
     private val apiService: ApiService,

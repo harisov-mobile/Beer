@@ -12,8 +12,7 @@ data class Beer(
     val alcoholPercentage: Double,
     var isFavorite: Boolean = false,
     val foodPairing: List<String>
-) : Parcelable
-{
+) : Parcelable {
     fun getAlcoholRange(alcoholPercentage: Double): AlcoholRangeType {
         return when {
             alcoholPercentage < 5 -> AlcoholRangeType.LOW
