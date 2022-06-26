@@ -1,14 +1,13 @@
 package ru.internetcloud.beer.data.repository
 
-import ru.internetcloud.beer.data.datasource.BeerLocalDataSource
 import ru.internetcloud.beer.data.datasource.BeerNetworkDataSource
 import ru.internetcloud.beer.domain.model.Beer
 import ru.internetcloud.beer.domain.model.Result
 import ru.internetcloud.beer.domain.repository.BeerRepository
+import javax.inject.Inject
 
-class BeerRepositoryImpl(
-    private val beerNetworkDataSource: BeerNetworkDataSource,
-    private val beerCacheDataSource: BeerLocalDataSource
+class BeerRepositoryImpl @Inject constructor(
+    private val beerNetworkDataSource: BeerNetworkDataSource
 ) : BeerRepository {
 
     override suspend fun getAllBeers(): Result<List<Beer>> {

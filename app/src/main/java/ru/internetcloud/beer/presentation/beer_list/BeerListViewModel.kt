@@ -5,16 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import ru.internetcloud.beer.data.datasource.BeerLocalDataSource
-import ru.internetcloud.beer.data.datasource.BeerNetworkDataSource
-import ru.internetcloud.beer.data.mapper.BeerMapper
-import ru.internetcloud.beer.data.network.api.ApiClient
-import ru.internetcloud.beer.data.repository.BeerRepositoryImpl
 import ru.internetcloud.beer.domain.model.Beer
 import ru.internetcloud.beer.domain.model.ResultType
 import ru.internetcloud.beer.domain.usecase.GetAllBeersUseCase
+import javax.inject.Inject
 
-class BeerListViewModel : ViewModel() {
+class BeerListViewModel @Inject constructor(
+    private val getAllBeersUseCase: GetAllBeersUseCase
+) : ViewModel() {
 
     private val _beerListLiveData = MutableLiveData<List<Beer>>()
     val beerListLiveData: LiveData<List<Beer>>
@@ -46,18 +44,12 @@ class BeerListViewModel : ViewModel() {
 
     fun fetchBeers() {
 
-        val apiClient = ApiClient()
-
-        val beerNetworkDataSource = BeerNetworkDataSource(apiClient.client, BeerMapper())
-
-        val repository = BeerRepositoryImpl(beerNetworkDataSource, BeerLocalDataSource())
-
         viewModelScope.launch() {
             _shouldShowRecyclerViewLiveData.value = false
             _isErrorLiveData.value = false
             _isEmptyLiveData.value = false
             _isLoadingLiveData.value = true
-            val result = GetAllBeersUseCase(repository).getAllBeers()
+            val result = getAllBeersUseCase.getAllBeers()
             _isLoadingLiveData.value = false
             when (result.resultType) {
                 ResultType.SUCCESS -> {

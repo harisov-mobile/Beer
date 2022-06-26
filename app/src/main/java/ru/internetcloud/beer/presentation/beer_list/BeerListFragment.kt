@@ -1,5 +1,6 @@
 package ru.internetcloud.beer.presentation.beer_list
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +8,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import ru.internetcloud.beer.BeerApp
 import ru.internetcloud.beer.databinding.FragmentBeerListBinding
+import ru.internetcloud.beer.di.ViewModelFactory
 import java.lang.IllegalStateException
+import javax.inject.Inject
 
 class BeerListFragment : Fragment() {
+
+    // даггер:
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+    private val component by lazy {
+        (requireActivity().application as BeerApp).component
+    }
 
     private var _binding: FragmentBeerListBinding? = null
     val binding: FragmentBeerListBinding
@@ -18,6 +29,13 @@ class BeerListFragment : Fragment() {
 
     private lateinit var beerListViewModel: BeerListViewModel
     private lateinit var beerListAdapter: BeerListAdapter
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        // даггер:
+        component.inject(this)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentBeerListBinding.inflate(inflater, container, false)
@@ -32,7 +50,8 @@ class BeerListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        beerListViewModel = ViewModelProvider(this).get(BeerListViewModel::class.java)
+        // beerListViewModel = ViewModelProvider(this).get(BeerListViewModel::class.java)
+        beerListViewModel = ViewModelProvider(this, viewModelFactory).get(BeerListViewModel::class.java)
 
         setupBeerRecyclerView()
         observeBeerViewModel()
