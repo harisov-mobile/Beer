@@ -8,6 +8,8 @@ buildscript {
         retrofitVersion = '2.9.0'
         converterGsonVersion = '2.9.0'
         loggingInterCeptorVerion = '4.7.2'
+
+        glideVersion = '4.13.0'
     }
 
     repositories {

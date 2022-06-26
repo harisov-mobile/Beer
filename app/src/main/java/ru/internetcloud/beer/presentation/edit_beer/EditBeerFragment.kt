@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import ru.internetcloud.beer.databinding.FragmentEditBeerBinding
 import ru.internetcloud.beer.domain.model.Beer
 import java.lang.IllegalStateException
+import ru.internetcloud.beer.presentation.util.loadImage
 
 class EditBeerFragment : Fragment() {
 
@@ -50,6 +51,7 @@ class EditBeerFragment : Fragment() {
     private fun updateUI(beer: Beer) {
         binding.beerNameTextView.text = beer.name
         binding.taglineTextView.text = beer.tagline
+        binding.beerImageView.loadImage(beer.image)
     }
 
     private fun readArgs() {

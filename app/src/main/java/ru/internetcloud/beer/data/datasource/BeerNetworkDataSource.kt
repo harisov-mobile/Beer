@@ -6,7 +6,7 @@ import ru.internetcloud.beer.domain.model.Beer
 import ru.internetcloud.beer.domain.model.Result
 import javax.inject.Inject
 
-const val MAX_RESULTS_PER_PAGE: Int = 4
+const val MAX_RESULTS_PER_PAGE: Int = 30
 
 class BeerNetworkDataSource @Inject constructor(
     private val apiService: ApiService,
