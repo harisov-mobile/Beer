@@ -9,8 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import ru.internetcloud.beer.databinding.FragmentEditBeerBinding
 import ru.internetcloud.beer.domain.model.Beer
-import java.lang.IllegalStateException
 import ru.internetcloud.beer.presentation.util.loadImage
+import java.lang.IllegalStateException
 
 class EditBeerFragment : Fragment() {
 

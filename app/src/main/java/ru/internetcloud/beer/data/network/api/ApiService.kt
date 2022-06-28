@@ -7,6 +7,7 @@ import ru.internetcloud.beer.data.network.dto.BeerDTO
 interface ApiService {
 
     @GET("beers?")
+    // @GET("beers?brewed_before=11-1012&abv_gt=6")
     suspend fun getAllBeers(
         @Query("page") page: String,
         @Query("per_page") perPage: String
