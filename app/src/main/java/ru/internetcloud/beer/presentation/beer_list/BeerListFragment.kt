@@ -11,8 +11,10 @@ import androidx.navigation.fragment.findNavController
 import ru.internetcloud.beer.BeerApp
 import ru.internetcloud.beer.databinding.FragmentBeerListBinding
 import ru.internetcloud.beer.di.ViewModelFactory
+import ru.internetcloud.beer.domain.model.State
 import java.lang.IllegalStateException
 import javax.inject.Inject
+import ru.internetcloud.beer.R
 
 class BeerListFragment : Fragment() {
 
@@ -70,39 +72,32 @@ class BeerListFragment : Fragment() {
     }
 
     private fun observeBeerViewModel() {
-        beerListViewModel.beerListLiveData.observe(viewLifecycleOwner) { list ->
-            beerListAdapter.submitList(list)
-        }
 
-        beerListViewModel.isLoadingLiveData.observe(viewLifecycleOwner) { isLoading ->
-            if (isLoading) {
-                binding.progressBar.visibility = View.VISIBLE
-            } else {
-                binding.progressBar.visibility = View.GONE
-            }
-        }
+        beerListViewModel.state.observe(viewLifecycleOwner) { currentState ->
+            binding.emptyListTextView.visibility = View.GONE
+            binding.progressBar.visibility = View.GONE
+            binding.errorTextView.visibility = View.GONE
 
-        beerListViewModel.isEmptyLiveData.observe(viewLifecycleOwner) { isEmpty ->
-            if (isEmpty) {
-                binding.emptyListTextView.visibility = View.VISIBLE
-            } else {
-                binding.emptyListTextView.visibility = View.GONE
-            }
-        }
+            when (currentState) {
+                is State.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
 
-        beerListViewModel.isErrorLiveData.observe(viewLifecycleOwner) { isError ->
-            if (isError) {
-                binding.errorTextView.visibility = View.VISIBLE
-            } else {
-                binding.errorTextView.visibility = View.GONE
-            }
-        }
+                is State.Success -> {
+                    currentState.data?.let { list ->
+                        if (list.size == 0) {
+                            binding.emptyListTextView.visibility = View.VISIBLE
+                        } else {
+                            beerListAdapter.submitList(currentState.data)
+                        }
+                    }
+                }
 
-        beerListViewModel.shouldShowRecyclerViewLiveData.observe(viewLifecycleOwner) { shouldShow ->
-            if (shouldShow) {
-                binding.beerRecyclerView.visibility = View.VISIBLE
-            } else {
-                binding.beerRecyclerView.visibility = View.INVISIBLE
+                is State.Error -> {
+                    binding.errorTextView.text = getString(
+                        R.string.error_message, currentState.exception?.message.toString())
+                    binding.errorTextView.visibility = View.VISIBLE
+                }
             }
         }
     }
