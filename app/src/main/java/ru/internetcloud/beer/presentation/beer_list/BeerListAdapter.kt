@@ -10,7 +10,7 @@ import ru.internetcloud.beer.presentation.util.loadImage
 class BeerListAdapter : ListAdapter<Beer, BeerListViewHolder>(BeerDiffCallback()) {
 
     // для отработки нажатий на элемент списка - переменная, которая будет хранить лямбда-функцию,
-    // на вход лямбда-функции в качестве параметра будет передан note: Note,
+    // на вход лямбда-функции в качестве параметра будет передан beer: Beer,
     // лямбда-функция ничего не возвращает (то есть Unit)
     // а первоначально переменная содержит null
     var onBeerListClickListener: ((beer: Beer) -> Unit)? = null

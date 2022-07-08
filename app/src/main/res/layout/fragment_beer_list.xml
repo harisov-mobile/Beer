@@ -12,9 +12,6 @@
         android:layout_height="match_parent"
 
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-
-        tools:layout_editor_absoluteX="82dp"
-        tools:layout_editor_absoluteY="-48dp"
         tools:listitem="@layout/item_beer_list" />
 
     <ProgressBar
